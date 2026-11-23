@@ -1,0 +1,11 @@
+[package]
+name = "ror-core"
+description = "Shared ror logic: config, press decisions, and the pipe protocol."
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+toml_edit.workspace = true

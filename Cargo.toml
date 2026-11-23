@@ -1,0 +1,25 @@
+[workspace]
+resolver = "3"
+members = ["apps/*", "crates/*"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+
+# Versions shared by every crate. A crate opts in with `name.workspace = true`.
+[workspace.dependencies]
+ror-core = { path = "crates/ror-core" }
+ror-win = { path = "crates/ror-win" }
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = "1"
+toml = "1.2.2"
+toml_edit = "0.25.20"
+windows = "0.62.2"
+
+# Small, fast exes: rord runs all the time.
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
+# Panics unwind (the default), so a panic in one of rord's worker threads
+# ends that thread rather than the whole listener.

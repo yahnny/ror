@@ -1,0 +1,21 @@
+[package]
+name = "ror-settings"
+description = "ror settings UI (proof of concept): edits config.toml; rord reloads it."
+version.workspace = true
+edition.workspace = true
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+# Windows-only, like the other exes; on other platforms main() just says so.
+[target.'cfg(windows)'.dependencies]
+ror-core.workspace = true
+ror-win.workspace = true
+serde.workspace = true
+tauri = { version = "2", features = [] }
+
+[features]
+# Serve the frontend embedded from web/dist. Off, the app loads `devUrl`
+# (Vite's dev server) for hot reload. `make dev` builds without it; every
+# other make target turns it on. (The Tauri CLI normally does this switch.)
+custom-protocol = ["tauri/custom-protocol"]

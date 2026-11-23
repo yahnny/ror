@@ -1,0 +1,24 @@
+[package]
+name = "ror-win"
+description = "Win32 helpers shared by the ror apps: which windows count, which program owns them, and app names and icons."
+version.workspace = true
+edition.workspace = true
+
+# Empty on other platforms, so the workspace still builds there.
+[target.'cfg(windows)'.dependencies]
+png = "0.18.1"
+
+[target.'cfg(windows)'.dependencies.windows]
+workspace = true
+features = [
+    "Win32_Foundation",
+    "Win32_Graphics_Dwm",
+    "Win32_Graphics_Gdi",
+    "Win32_Storage_FileSystem",
+    "Win32_System_Diagnostics_ToolHelp",
+    "Win32_System_Environment",
+    "Win32_System_Registry",
+    "Win32_System_Threading",
+    "Win32_UI_Shell",
+    "Win32_UI_WindowsAndMessaging",
+]
